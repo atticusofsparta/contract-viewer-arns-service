@@ -1,89 +1,112 @@
-import { ExperimentFilled, SettingFilled } from '@ant-design/icons'
-import './styles.css'
-import { Searchbar } from '..'
-import { Link } from 'react-router-dom'
-import { ArConnectWalletConnector } from '../../../utils/ArConnectWalletConnector'
-import { useGlobalState } from '../../../state/GlobalState'
-import eventEmitter from '../../../utils/events'
-import useArweave from '../../../hooks/useArweave/useArweave'
+import { ExperimentFilled, SettingFilled } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
+import { Searchbar } from '..';
+import { useGlobalState } from '../../../state/GlobalState';
+import { ArConnectWalletConnector } from '../../../utils/ArConnectWalletConnector';
+import eventEmitter from '../../../utils/events';
+import './styles.css';
 
-function Navbar () {
+function Navbar() {
+  const [
+    { walletAddress, wallet, blockHeight, walletBalance },
+    dispatchGlobalState,
+  ] = useGlobalState();
 
-    const [{walletAddress, wallet, blockHeight, walletBalance}, dispatchGlobalState] = useGlobalState()
-
-
-
-    return (
-        <div className="navbar" style={{
-            padding: '0 30px',
-        }}>
-            <Link to='/'>
-            <div style={{
-                gap: '30px',
-                display: 'flex',
-                alignItems: 'center',
-
-            }}>
-            <ExperimentFilled size={50} />
-            <span>ArNS service interface</span>
-            </div>
-            </Link>
-            
-            <Searchbar />
-
-            <div style={{
-                display:'flex',
-                alignItems: 'center',
-                gap: '30px'
-
-                }}>
-                <Link to='/docs'>
-                docs
-                </Link>
-                <Link to='/config' style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    color: 'red'
-                    
-                }}>
-                    <SettingFilled size={50} />
-                CONFIG
-                </Link>
-                {walletAddress ? 
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px'
-                }}>
-                    <span>Block Height: {blockHeight}</span> |
-                    <span>AR: {(walletBalance.toPrecision(6))}</span>
-                </div> 
-                : <></>}
-            <button onClick={() => {
-                if (!walletAddress){
-                const newWallet = new ArConnectWalletConnector()
-                newWallet.connect()
-                dispatchGlobalState({type: 'setWallet', payload: wallet})
-                newWallet.getWalletAddress().then((address)=>{
-                    dispatchGlobalState({type: 'setWalletAddress', payload: address.toString()})
-                }).catch((err)=>{
-                    eventEmitter.emit('error', {message: err, name: 'Error'})
-                })
-                } else {
-                    wallet?.disconnect()
-                    dispatchGlobalState({type: 'setWallet', payload: undefined})
-                    dispatchGlobalState({type: 'setWalletAddress', payload: ''})
-                }
-            }}>{walletAddress ? `Disconnect: ${walletAddress.substring(0, 4)}...${walletAddress.substring(walletAddress.length -4)}` : 'Connect'}</button>
-            </div>
-            
-
-
+  return (
+    <div
+      className="navbar"
+      style={{
+        padding: '0 30px',
+        zIndex: '1000',
+        position: 'fixed',
+        width: '100%',
+        boxSizing: 'border-box',
+      }}
+    >
+      <Link to="/">
+        <div
+          style={{
+            gap: '30px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <ExperimentFilled size={50} />
+          <span>ArNS service interface</span>
         </div>
-    )
+      </Link>
+
+      <Searchbar />
+
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '30px',
+        }}
+      >
+        <Link to="/docs">docs</Link>
+        <Link
+          to="/config"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            color: 'red',
+          }}
+        >
+          <SettingFilled size={50} />
+          CONFIG
+        </Link>
+        {walletAddress ? (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+            }}
+          >
+            <span>Block Height: {blockHeight}</span> |
+            <span>AR: {walletBalance.toPrecision(6)}</span>
+          </div>
+        ) : (
+          <></>
+        )}
+        <button
+          onClick={() => {
+            if (!walletAddress) {
+              const newWallet = new ArConnectWalletConnector();
+              newWallet.connect();
+              dispatchGlobalState({ type: 'setWallet', payload: wallet });
+              newWallet
+                .getWalletAddress()
+                .then((address) => {
+                  dispatchGlobalState({
+                    type: 'setWalletAddress',
+                    payload: address.toString(),
+                  });
+                })
+                .catch((err) => {
+                  eventEmitter.emit('error', { message: err, name: 'Error' });
+                });
+            } else {
+              wallet?.disconnect();
+              dispatchGlobalState({ type: 'setWallet', payload: undefined });
+              dispatchGlobalState({ type: 'setWalletAddress', payload: '' });
+            }
+          }}
+        >
+          {walletAddress
+            ? `Disconnect: ${walletAddress.substring(
+                0,
+                4,
+              )}...${walletAddress.substring(walletAddress.length - 4)}`
+            : 'Connect'}
+        </button>
+      </div>
+    </div>
+  );
 }
 
-
-export default Navbar
+export default Navbar;

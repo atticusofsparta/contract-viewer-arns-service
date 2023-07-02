@@ -19,24 +19,23 @@ export default function Notifications() {
     });
   }
 
-  function handleWarning(n: {name:string, message:string}) {
+  function handleWarning(n: { name: string; message: string }) {
     console.warn('Warning:', n);
     showNotification({
-        type: 'warning',
-        title: n.name,
-        description: n.message,
-        });
-    }
+      type: 'warning',
+      title: n.name,
+      description: n.message,
+    });
+  }
 
-    function handleInfo(n: {name:string, message:string}) {
-        console.info('Info:', n);
-        showNotification({
-            type: 'info',
-            title: n.name,
-            description: n.message,
-            });
-        }
-
+  function handleInfo(n: { name: string; message: string }) {
+    console.info('Info:', n);
+    showNotification({
+      type: 'info',
+      title: n.name,
+      description: n.message,
+    });
+  }
 
   function showNotification({
     type,
@@ -65,8 +64,8 @@ export default function Notifications() {
 
     return () => {
       eventEmitter.off('error');
-        eventEmitter.off('warning');
-        eventEmitter.off('info');
+      eventEmitter.off('warning');
+      eventEmitter.off('info');
     };
   });
 

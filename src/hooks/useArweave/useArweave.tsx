@@ -1,41 +1,39 @@
+import Arweave from 'arweave';
+import { useEffect, useState } from 'react';
 
-import Arweave from 'arweave'
-import { useState, useEffect } from 'react'
-import { useGlobalState } from '../../state/GlobalState'
+import { useGlobalState } from '../../state/GlobalState';
 
-function useArweave () {
+function useArweave() {
+  const [{ blockHeight, gateway, wallet, walletAddress }, dispatchGlobalState] =
+    useGlobalState();
 
-    const [{blockHeight, gateway, wallet, walletAddress}, dispatchGlobalState] = useGlobalState()
+  const [arweave, setArweave] = useState<Arweave | null>(null);
 
-    const [arweave, setArweave] = useState<Arweave | null>(null)
+  useEffect(() => {
+    const arweaveInstance = Arweave.init({
+      host: gateway ?? 'arweave.net',
+      port: 443,
+      protocol: 'https',
+    });
 
-    useEffect(()=>{
+    setArweave(arweaveInstance);
+  }, [gateway]);
 
-        const arweaveInstance = Arweave.init({
-            host: gateway ?? 'arweave.net',
-            port: 443,
-            protocol: 'https',
-        })
+  // update block height every 2 minutes
 
-        setArweave(arweaveInstance)
-    },[gateway])
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const height = await arweave?.network
+        .getInfo()
+        .then((info) => info.height);
+      if (height) {
+        dispatchGlobalState({ type: 'setBlockHieght', payload: height });
+      }
+    }, 120000);
+    return () => clearInterval(interval);
+  }, [arweave, wallet, gateway]);
 
-    // update block height every 2 minutes
-
-    useEffect(()=>{
-        const interval = setInterval(async () => {
-            const height = await arweave?.network.getInfo().then((info) => info.height)
-            if (height) {
-                dispatchGlobalState({type: 'setBlockHieght', payload: height})
-            }
-        }, 120000)
-        return () => clearInterval(interval)
-    },[arweave, wallet, gateway])
-
-    return {arweave}
-
-
+  return { arweave };
 }
 
-
-export default useArweave
+export default useArweave;

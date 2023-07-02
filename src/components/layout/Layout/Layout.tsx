@@ -1,14 +1,29 @@
-import { Navbar } from ".."
-import { Outlet } from "react-router-dom"
-import Notifications from "../Notifications/Notifications"
+import Matrix from 'react-matrix-effect';
+import { Outlet } from 'react-router-dom';
 
-function Layout (){
-    return (
-        <div>
-        <Navbar />
-        <Outlet />
-        <Notifications />
-        </div>
-    )
+import { Navbar } from '..';
+import Notifications from '../Notifications/Notifications';
+
+function Layout() {
+  return (
+    <div>
+      <Navbar />
+      <Matrix
+        fullscreen={true}
+        color={'purple'}
+        style={{
+          zIndex: '1000',
+          position: 'fixed',
+          background: 'none',
+          display: 'flex',
+          opacity: '0.3',
+        }}
+        speed={0.5}
+      />
+
+      <Outlet />
+      <Notifications />
+    </div>
+  );
 }
-export default Layout
+export default Layout;

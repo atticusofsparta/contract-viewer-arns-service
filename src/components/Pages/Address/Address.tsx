@@ -1,6 +1,5 @@
-function Address () {
-
-    return <></>
+function Address() {
+  return <></>;
 }
 
-export default Address
+export default Address;

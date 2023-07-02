@@ -1,6 +1,5 @@
-function Contract () {
-
-    return <></>
+function Contract() {
+  return <></>;
 }
 
-export default Contract
+export default Contract;

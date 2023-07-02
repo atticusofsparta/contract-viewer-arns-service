@@ -1,7 +1,6 @@
 import { PermissionType } from 'arconnect';
+
 import { ArweaveTransactionID, ArweaveWalletConnector } from '../types';
-
-
 
 const ARCONNECT_WALLET_PERMISSIONS: PermissionType[] = [
   'ACCESS_ADDRESS',
@@ -41,5 +40,4 @@ export class ArConnectWalletConnector implements ArweaveWalletConnector {
       .getActiveAddress()
       .then((res) => new ArweaveTransactionID(res));
   }
-
 }

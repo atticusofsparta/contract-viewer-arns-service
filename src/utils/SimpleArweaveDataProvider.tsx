@@ -3,15 +3,15 @@ import Ar from 'arweave/node/ar';
 import { ResponseWithData } from 'arweave/node/lib/api';
 
 import {
+  RECOMMENDED_TRANSACTION_CONFIRMATIONS,
+  transactionByOwnerQuery,
+} from '../constants';
+import {
   ArweaveDataProvider,
   ArweaveTransactionID,
   TransactionHeaders,
 } from '../types';
 import { tagsToObject } from './common';
-import {
-  RECOMMENDED_TRANSACTION_CONFIRMATIONS,
-  transactionByOwnerQuery,
-} from '../constants';
 
 export class SimpleArweaveDataProvider implements ArweaveDataProvider {
   private _arweave: Arweave;

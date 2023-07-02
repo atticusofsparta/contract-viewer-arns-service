@@ -1,6 +1,5 @@
-function Interaction () {
-
-    return <></>
+function Interaction() {
+  return <></>;
 }
 
-export default Interaction
+export default Interaction;

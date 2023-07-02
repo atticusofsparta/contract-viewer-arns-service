@@ -1,15 +1,8 @@
-import Home from "./Home/Home";
-import Contract from "./Contract/Contract";
-import Interaction from "./Ineteraction/Interaction";
-import Address from "./Address/Address";
-import Docs from "./Docs/Docs";
-import Config from "./Config/Config";
+import Address from './Address/Address';
+import Config from './Config/Config';
+import Contract from './Contract/Contract';
+import Docs from './Docs/Docs';
+import Home from './Home/Home';
+import Interaction from './Ineteraction/Interaction';
 
-export {
-Home,
-Contract,
-Interaction,
-Address,
-Docs,
-Config
-}
+export { Home, Contract, Interaction, Address, Docs, Config };
