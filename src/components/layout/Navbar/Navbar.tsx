@@ -1,10 +1,17 @@
-import { ExperimentFilled } from '@ant-design/icons'
+import { ExperimentFilled, SettingFilled } from '@ant-design/icons'
 import './styles.css'
 import { Searchbar } from '..'
 import { Link } from 'react-router-dom'
+import { ArConnectWalletConnector } from '../../../utils/ArConnectWalletConnector'
+import { useGlobalState } from '../../../state/GlobalState'
+import eventEmitter from '../../../utils/events'
+import useArweave from '../../../hooks/useArweave/useArweave'
 
 
 function Navbar () {
+
+    const [{walletAddress, wallet, blockHeight, walletBalance}, dispatchGlobalState] = useGlobalState()
+
 
 
     return (
@@ -25,11 +32,51 @@ function Navbar () {
             
             <Searchbar />
 
-            <div>
+            <div style={{
+                display:'flex',
+                alignItems: 'center',
+                gap: '30px'
+
+                }}>
                 <Link to='/docs'>
                 docs
                 </Link>
-            <button>Connect</button>
+                <Link to='/config' style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    color: 'red'
+                    
+                }}>
+                    <SettingFilled size={50} />
+                CONFIG
+                </Link>
+                {walletAddress ? 
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px'
+                }}>
+                    <span>Block Height: {blockHeight}</span> |
+                    <span>AR: {(walletBalance.toPrecision(6))}</span>
+                </div> 
+                : <></>}
+            <button onClick={() => {
+                if (!walletAddress){
+                const newWallet = new ArConnectWalletConnector()
+                newWallet.connect()
+                dispatchGlobalState({type: 'setWallet', payload: wallet})
+                newWallet.getWalletAddress().then((address)=>{
+                    dispatchGlobalState({type: 'setWalletAddress', payload: address.toString()})
+                }).catch((err)=>{
+                    eventEmitter.emit('error', {message: err, name: 'Error'})
+                })
+                } else {
+                    wallet?.disconnect()
+                    dispatchGlobalState({type: 'setWallet', payload: undefined})
+                    dispatchGlobalState({type: 'setWalletAddress', payload: ''})
+                }
+            }}>{walletAddress ? `Disconnect: ${walletAddress.substring(0, 4)}...${walletAddress.substring(walletAddress.length -4)}` : 'Connect'}</button>
             </div>
             
 

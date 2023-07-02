@@ -9,6 +9,7 @@ export type Action =
     }
   | { type: 'setGateway'; payload: string }
   | { type: 'setBlockHieght'; payload: number }
+  | { type: 'setWalletBalance'; payload: number }
 
 
   export const reducer = (state: GlobalState, action: Action): GlobalState => {
@@ -34,6 +35,11 @@ export type Action =
                 ...state,
                 blockHeight: action.payload
             };
+            case 'setWalletBalance':
+                return {
+                    ...state,
+                    walletBalance: action.payload
+                };
 
     }
   }
