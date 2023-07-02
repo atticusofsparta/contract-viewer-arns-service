@@ -10,7 +10,6 @@ function Layout() {
       <Navbar />
       <Matrix
         fullscreen={true}
-        color={'purple'}
         style={{
           zIndex: '1000',
           position: 'fixed',

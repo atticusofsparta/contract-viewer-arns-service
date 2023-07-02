@@ -1,0 +1,47 @@
+.table-wrapper{
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    margin-bottom: 20px; 
+}
+.contract-table-row {
+    background-color: rgb(0,0,0,.5);
+}
+
+.table-wrapper > .ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-container > .ant-table-content > table > .ant-table-tbody > tr > td {
+    border-bottom: 1px solid rgb(0,0,0,.5);
+    border-top: 1px solid rgb(0,0,0,.5);
+    border-left: 1px solid rgb(0,0,0,.5);
+    border-right: 1px solid rgb(0,0,0,.5);
+    padding: 0px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: inherit;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+.table-wrapper > .ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container  > .ant-table{
+    background-color: transparent;
+    border-radius: 5px;
+}
+.table-wrapper > .ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container  > .ant-table > .ant-table-container > .ant-table-content > table > thead > tr > th {
+    border-bottom: 1px solid rgb(0,0,0,.5);
+    border-top: 1px solid rgb(0,0,0,.5);
+    border-left: 1px solid rgb(0,0,0,.5);
+    border-right: 1px solid rgb(0,0,0,.5);
+    background-color: rgb(0,0,0,.5);
+    padding: 0px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-family: inherit;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}

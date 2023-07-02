@@ -15,13 +15,14 @@ function Navbar() {
 
   return (
     <div
-      className="navbar"
+      className="navbar green-pattern"
       style={{
         padding: '0 30px',
         zIndex: '1000',
         position: 'fixed',
         width: '100%',
         boxSizing: 'border-box',
+        backgroundColor: 'black',
       }}
     >
       <Link to="/">
@@ -30,6 +31,7 @@ function Navbar() {
             gap: '30px',
             display: 'flex',
             alignItems: 'center',
+        
           }}
         >
           <ExperimentFilled size={50} />
@@ -65,6 +67,7 @@ function Navbar() {
               display: 'flex',
               alignItems: 'center',
               gap: '10px',
+              fontSize:'13px'
             }}
           >
             <span>Block Height: {blockHeight}</span> |
@@ -74,6 +77,9 @@ function Navbar() {
           <></>
         )}
         <button
+        style={{
+            fontSize:'13px'
+        }}
           onClick={() => {
             if (!walletAddress) {
               const newWallet = new ArConnectWalletConnector();
