@@ -1,5 +1,6 @@
 import Arweave from 'arweave/node/common';
 import { Tag } from 'arweave/node/lib/transaction';
+import axios from 'axios';
 import {
   ArWallet,
   LoggerFactory,
@@ -9,6 +10,12 @@ import {
 } from 'warp-contracts';
 import { DeployPlugin } from 'warp-contracts-plugin-deploy';
 
+import {
+  ARNS_SERVICE_URL,
+  ATOMIC_REGISTRATION_INPUT,
+  PDNS_REGISTRY_ADDRESS,
+  SMARTWEAVE_MAX_TAG_SPACE,
+} from '../constants';
 import {
   ArweaveTransactionID,
   ContractInteraction,
@@ -20,17 +27,12 @@ import {
   TransactionCache,
   TransactionTag,
 } from '../types';
+import { LocalStorageCache } from './LocalStorageCache';
 import {
   buildSmartweaveInteractionTags,
   byteSize,
   isDomainAuctionable,
 } from './common';
-import {
-  ATOMIC_REGISTRATION_INPUT,
-  PDNS_REGISTRY_ADDRESS,
-  SMARTWEAVE_MAX_TAG_SPACE,
-} from '../constants';
-import { LocalStorageCache } from './LocalStorageCache';
 
 LoggerFactory.INST.logLevel('error');
 
@@ -317,7 +319,11 @@ export class WarpDataProvider
   async getContractInteractions(
     id: ArweaveTransactionID,
   ): Promise<ContractInteraction[]> {
-    throw Error('Not implemented!');
+    const response = await axios.get(
+      `${ARNS_SERVICE_URL}/contract/${id.toString()}/interactions`,
+    );
+    const interactions = response.data.interactions as ContractInteraction[];
+    return interactions;
   }
 
   async getPendingContractInteractions(

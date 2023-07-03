@@ -1,7 +1,14 @@
 import { Buffer } from 'buffer';
 import { inRange } from 'lodash';
+
 import { RESERVED_NAME_LENGTH } from '../constants';
-import { TRANSACTION_TYPES, TransactionTag, ArweaveTransactionID, SmartWeaveActionInput, SmartWeaveActionTags } from '../types';
+import {
+  ArweaveTransactionID,
+  SmartWeaveActionInput,
+  SmartWeaveActionTags,
+  TRANSACTION_TYPES,
+  TransactionTag,
+} from '../types';
 
 export function fromB64Url(input: string): string {
   const decodedBuffer = Buffer.from(input, 'base64');
@@ -23,7 +30,6 @@ export function tagsToObject(tags: TransactionTag[]): {
 export function byteSize(data: string): number {
   return Buffer.byteLength(data);
 }
-
 
 export function buildSmartweaveInteractionTags({
   contractId,

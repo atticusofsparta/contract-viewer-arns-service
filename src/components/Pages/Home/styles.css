@@ -1,12 +1,23 @@
 .table-wrapper{
     width: 100%;
-    overflow-x: auto;
     margin-top: 20px;
     margin-bottom: 20px; 
 }
 .contract-table-row {
-    background-color: rgb(0,0,0,.5);
+    background-color: rgb(0,0,0,.5) !important;
 }
+.contract-table-row:hover {
+    background: rgb(0,0,0,.5) !important;
+}
+
+.ant-table-tbody > tr.ant-table-row:hover > td {
+    background-color: rgb(0,0,0,.5) !important;
+  }
+  .ant-table-tbody > tr.ant-table-row > td {
+    background-color: rgb(0,0,0,.2) !important;
+  }
+
+  
 
 .table-wrapper > .ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-container > .ant-table-content > table > .ant-table-tbody > tr > td {
     border-bottom: 1px solid rgb(0,0,0,.5);

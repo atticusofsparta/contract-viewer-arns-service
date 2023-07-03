@@ -31,7 +31,6 @@ function Navbar() {
             gap: '30px',
             display: 'flex',
             alignItems: 'center',
-        
           }}
         >
           <ExperimentFilled size={50} />
@@ -67,7 +66,7 @@ function Navbar() {
               display: 'flex',
               alignItems: 'center',
               gap: '10px',
-              fontSize:'13px'
+              fontSize: '13px',
             }}
           >
             <span>Block Height: {blockHeight}</span> |
@@ -77,9 +76,9 @@ function Navbar() {
           <></>
         )}
         <button
-        style={{
-            fontSize:'13px'
-        }}
+          style={{
+            fontSize: '13px',
+          }}
           onClick={() => {
             if (!walletAddress) {
               const newWallet = new ArConnectWalletConnector();

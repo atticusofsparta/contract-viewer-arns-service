@@ -78,7 +78,6 @@ export type TransactionTag = {
   value: string;
 };
 
-
 export interface TransactionCache {
   set(key: string, value: any): void;
   get(key: string): any;
@@ -98,7 +97,7 @@ export type ContractInteraction = {
     function: string;
     [x: string]: string;
   };
-  valid?: boolean;
+  valid: boolean;
   [x: string]: any;
 };
 
@@ -107,7 +106,6 @@ export type PDNSRecordEntry = {
   tier: string;
   endTimestamp: number;
 };
-
 
 export type PDNSDomains = { [x: string]: PDNSRecordEntry };
 
@@ -211,7 +209,6 @@ export type Tier = {
   id: string;
   settings: { maxUndernames: number } & { [x: string]: any };
 };
-
 
 export interface SmartweaveContractInteractionProvider {
   writeTransaction({

@@ -1,4 +1,8 @@
-import { ArweaveTransactionID, PDNSContractJSON, PDNTContractJSON } from './types';
+import {
+  ArweaveTransactionID,
+  PDNSContractJSON,
+  PDNTContractJSON,
+} from './types';
 
 export const TX_ID_REGEX = new RegExp('^[a-zA-Z0-9-_s+]{43}$');
 export const RECOMMENDED_TRANSACTION_CONFIRMATIONS = 50;
@@ -6,7 +10,9 @@ export const RESERVED_NAME_LENGTH = 4; // names must be greater than 4 character
 export const PDNS_REGISTRY_ADDRESS =
   'GfrHPxXyfuxNNdGvzHl_5HFX711jZsG3OE8qmG-UqlY';
 
-  export const DEFAULT_TTL_SECONDS = 3600;
+export const ARNS_SERVICE_URL = 'https://dev.arns.app';
+
+export const DEFAULT_TTL_SECONDS = 3600;
 export const DEFAULT_MAX_UNDERNAMES = 100;
 
 export const SMARTWEAVE_TAG_SIZE = 250; // required tag size in bytes
