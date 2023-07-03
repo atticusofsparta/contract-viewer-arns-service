@@ -6935,6 +6935,11 @@ vfile@^5.0.0:
     unist-util-stringify-position "^3.0.0"
     vfile-message "^3.0.0"
 
+vite-plugin-dev-manifest@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/vite-plugin-dev-manifest/-/vite-plugin-dev-manifest-1.1.1.tgz#cf7b053fbf24ad09ca71271ca36fda6be306ccce"
+  integrity sha512-sb0fOIsBRUTYa8vRnO9e/bWRAUrIqtCHqrRvP/rbZmrk3BQYuovUoAn6NnHcvF5WcuPf2ApkyDZNdguwQM7hMQ==
+
 vite-plugin-node-polyfills@^0.9.0:
   version "0.9.0"
   resolved "https://registry.npmjs.org/vite-plugin-node-polyfills/-/vite-plugin-node-polyfills-0.9.0.tgz"

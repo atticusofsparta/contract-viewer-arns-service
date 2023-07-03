@@ -7,8 +7,11 @@ export default defineConfig({
   plugins: [react(), nodePolyfills({
     // Whether to polyfill `node:` protocol imports.
     protocolImports: true,
-  }),],
-  base: '/',
+  })],
+  build: {
+    manifest: true,
+},
+  base: './',
   define: {
     'process.env': process.env,
     VITE_CONFIG: {
