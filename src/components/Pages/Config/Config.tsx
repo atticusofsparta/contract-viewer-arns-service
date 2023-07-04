@@ -3,7 +3,8 @@ import {useState} from "react";
 import { Button} from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { set } from "lodash";
-import { ARNS_SERVICE_URL, DEFAULT_GATEWAY } from "../../../constants";
+import { ARNS_SERVICE_URL, DEFAULT_GATEWAY, PDNS_REGISTRY_ADDRESS, TX_ID_REGEX } from "../../../constants";
+import CopyTextButton from "../../buttons/CopyTextButton/CopyTextButton";
 
 
 
@@ -114,7 +115,60 @@ function Config() {
       : <></>}
       {view === 'display' ? <h3>display</h3> : <></>}
       {view === 'arprofile' ? <h3>arprofile</h3> : <></>}
-      {view === 'contracts' ? <h3>contracts</h3> : <></>}
+      {view === 'contracts' ? <div className="flex-column flex-start fill-space" style={{gap:100}}>
+        <div className="flex-row flex-between" style={{width:"100%"}}>
+        <h2>Contract Settings:</h2>
+        <div className="flex-column" style={{gap:"10px"}}>
+          <span className="flex-row">Registry ID:&nbsp;<CopyTextButton position="relative" size={0} copyText={arnsRegistryContractId} displayText={arnsRegistryContractId} /></span>
+          <span className="flex-row">Source Code ID:&nbsp;<CopyTextButton size={0} position="relative" copyText={arnsRegistrySrcCodeId ?? "unset"} displayText={arnsRegistrySrcCodeId ?? "unset"} /></span>
+        </div>
+          </div>
+
+          <div className="flex-column flex-start" style={{width:"100%", gap:"15px"}}>
+          <span style={{width:"fit-content", justifyContent:'space-between', display:"flex"}}>New ArNS registry ID: 
+          <input 
+          type='search' 
+          value={newArnsRegistryContractId}
+          onChange={(e)=> setNewArnsRegistryContractId(e.target.value)}
+          placeholder={arnsRegistryContractId}
+          style={{width:"400px", boxShadow: newArnsRegistryContractId ? TX_ID_REGEX.test(newArnsRegistryContractId ?? "") ? "0px 0px 5px 3px green" : "0px 0px 5px 3px red" : ""}}
+          pattern={TX_ID_REGEX.source}
+          maxLength={43}
+          />
+          </span>
+          <span style={{width:"fit-content", justifyContent:'space-between', display:"flex"}}>New ArNS Source Code ID: 
+          <input 
+          type='search' 
+          value={newArnsRegistrySrcCodeId}
+          onChange={(e)=> setNewArnsRegistrySrcCodeId(e.target.value)}
+          placeholder={arnsRegistrySrcCodeId}
+          style={{width:"400px", boxShadow: newArnsRegistrySrcCodeId  ? TX_ID_REGEX.test(newArnsRegistrySrcCodeId ?? "") ? "0px 0px 5px 3px green" : "0px 0px 5px 3px red" : ""}}
+          pattern={TX_ID_REGEX.source}
+          maxLength={43}
+          />
+          </span>
+         
+            </div>
+            <div className="flex-row flex-start" style={{gap:30}}>
+            <Button style={{background:"gold"}}
+            onClick={()=> {
+              setConfig({
+                arnsRegistryContractId: newArnsRegistryContractId.length ? newArnsRegistryContractId : arnsRegistryContractId,
+                arnsRegistrySrcCodeId: newArnsRegistrySrcCodeId?.length ? newArnsRegistrySrcCodeId : arnsRegistrySrcCodeId,
+              });
+              setNewArnsRegistryContractId('');
+              setNewArnsRegistrySrcCodeId('');
+            }}
+            >
+            Save
+          </Button>
+          <Button onClick={()=> setConfig({arnsRegistryContractId: PDNS_REGISTRY_ADDRESS, arnsRegistrySrcCodeId:undefined})} style={{background:"silver"}}>
+            Reset to defaults
+          </Button>
+
+              </div>
+        
+      </div> : <></>}
       {view === 'cache' ? <h3>cache</h3> : <></>}
 
     </div>

@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { ARNS_SERVICE_URL, PDNS_REGISTRY_ADDRESS } from '../../constants';
+import { useEffect } from 'react';
 import { useGlobalState } from '../../state/GlobalState';
 import eventEmitter from '../../utils/events';
 import { Config } from '../../types';

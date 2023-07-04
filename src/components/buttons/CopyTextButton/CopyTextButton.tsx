@@ -50,9 +50,9 @@ function CopyTextButton({
           autoAdjustOverflow={true}
           arrow={false}
           overlayInnerStyle={{
-            color: 'var(--text-black)',
+            color: 'black',
             fontFamily: 'Rubik-Bold',
-            backgroundColor: 'var(--text-white)',
+            backgroundColor: 'white',
           }}
         >
           <CopyOutlined size={20} />

@@ -1,5 +1,4 @@
-import { Button } from 'antd';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { PDNS_REGISTRY_ADDRESS } from '../../../constants';
 import '../../../index.css';
@@ -10,9 +9,11 @@ import ContractViewSelector, {
 } from '../../layout/ContractViewSelector/ContractViewSelector';
 import InteractionsTable from '../../layout/tables/InteractionsTable';
 import './styles.css';
+import { useGlobalState } from '../../../state/GlobalState';
 
 function Home() {
   const [view, setView] = useState<ContractView>('interactions');
+  const [{config:{arnsRegistryContractId}}, dispatchGlobalState] = useGlobalState();
 
   return (
     <div
@@ -93,14 +94,14 @@ function Home() {
 
       {view === 'interactions' ? (
         <InteractionsTable
-          id={new ArweaveTransactionID(PDNS_REGISTRY_ADDRESS)}
+          id={new ArweaveTransactionID(arnsRegistryContractId)}
         />
       ) : (
         <></>
       )}
       {view === 'read' ? (
         <ContractState
-          contractId={new ArweaveTransactionID(PDNS_REGISTRY_ADDRESS)}
+          contractId={new ArweaveTransactionID(arnsRegistryContractId)}
         />
       ) : (
         <></>

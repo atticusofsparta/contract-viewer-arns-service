@@ -284,7 +284,6 @@ function useInteractionsTable(interactions?: ContractInteraction[]) {
         fetchedRows.push(rowData);
       } catch (error) {
         console.error(error);
-        eventEmitter.emit('error', { message: error, name: 'Error' });
       } finally {
         setPercentLoaded(
           ((interactions.indexOf(interaction) + 1) / interactions.length) * 100,
