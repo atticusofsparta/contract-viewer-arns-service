@@ -286,6 +286,7 @@ export type SmartWeaveActionTags = [
     walletBalanceRefreshRate: number;
     arnsRegistryContractId: string;
     arnsRegistrySrcCodeId?: string;
+    savedArnsContractIds?: string[];
     nameTokenSrcCodeIds?: string[];
   }
   

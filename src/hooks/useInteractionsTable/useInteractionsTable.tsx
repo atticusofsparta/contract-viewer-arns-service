@@ -19,7 +19,7 @@ export type InteractionMetadata = {
 
 function useInteractionsTable(interactions?: ContractInteraction[]) {
   const isMobile = useIsMobile();
-  const [sortAscending, setSortOrder] = useState(false);
+  const [sortAscending, setSortOrder] = useState(true);
   const [sortField, setSortField] =
     useState<keyof InteractionMetadata>('block');
   const [selectedRow, setSelectedRow] = useState<InteractionMetadata>();
@@ -170,8 +170,6 @@ function useInteractionsTable(interactions?: ContractInteraction[]) {
         dataIndex: 'valid',
         key: 'valid',
         ellipsis: true,
-        sorter: (a: any, b: any) => a.valid.valid,
-        sortDirections: ['descend'],
         render: (val: { valid: boolean; error?: string }) =>
           val.valid ? (
             'valid'
@@ -280,8 +278,9 @@ function useInteractionsTable(interactions?: ContractInteraction[]) {
           block: interaction.height,
         };
         // sort by confirmation count (ASC) by default
-        fetchedRows.sort((a, b) => a.block - b.block);
+        
         fetchedRows.push(rowData);
+        fetchedRows.sort((a, b) => b.block - a.block);
       } catch (error) {
         console.error(error);
       } finally {
