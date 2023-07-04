@@ -1,5 +1,6 @@
 import {
   ArweaveTransactionID,
+  Config,
   PDNSContractJSON,
   PDNTContractJSON,
 } from './types';
@@ -10,7 +11,8 @@ export const RESERVED_NAME_LENGTH = 4; // names must be greater than 4 character
 export const PDNS_REGISTRY_ADDRESS =
   'GfrHPxXyfuxNNdGvzHl_5HFX711jZsG3OE8qmG-UqlY';
 
-export const ARNS_SERVICE_URL = 'https://dev.arns.app';
+export const ARNS_SERVICE_URL = 'dev.arns.app';
+export const DEFAULT_GATEWAY = 'arweave.net';
 
 export const DEFAULT_TTL_SECONDS = 3600;
 export const DEFAULT_MAX_UNDERNAMES = 100;
@@ -86,3 +88,13 @@ export const ATOMIC_REGISTRATION_INPUT = {
   name: '',
   contractTxId: ATOMIC_FLAG,
 };
+
+export const DEFAULT_CONFIG: Config = {
+  gateway: 'arweave.net',
+  serviceUrl: ARNS_SERVICE_URL,
+  blockHeightRefreshRate: 120_000,
+  walletBalanceRefreshRate: 120_000,
+  arnsRegistryContractId: PDNS_REGISTRY_ADDRESS,
+  arnsRegistrySrcCodeId: undefined,
+  nameTokenSrcCodeIds: undefined,
+}

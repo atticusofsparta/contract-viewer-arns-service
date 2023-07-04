@@ -15,6 +15,7 @@ import {
   Interaction,
 } from './components/Pages';
 import { Layout, NotFound } from './components/layout';
+import useConfig from './hooks/useConfig/useConfig';
 
 const router = createHashRouter(
   createRoutesFromElements(
@@ -32,6 +33,7 @@ const router = createHashRouter(
 );
 
 function App() {
+  useConfig() // get localstorage config on app load
   return (
     <>
       <RouterProvider router={router} />
