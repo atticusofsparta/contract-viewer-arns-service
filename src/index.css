@@ -48,10 +48,6 @@ h1 {
   line-height: 1.1;
 }
 
-canvas {
-  z-index: 1000;
-  position: fixed;
-}
 
 .page {
   display: flex;

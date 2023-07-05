@@ -10,6 +10,7 @@ import ContractViewSelector, {
 import InteractionsTable from '../../layout/tables/InteractionsTable';
 import './styles.css';
 import { useGlobalState } from '../../../state/GlobalState';
+import InteractionsOverTime from '../../layout/charts/InteractionsOverTime';
 
 function Home() {
   const [view, setView] = useState<ContractView>('interactions');
@@ -36,23 +37,17 @@ function Home() {
         <div
           className="flex-row flex-center"
           style={{
-            width: '50%',
-            height: '100%',
+            flex: 1,
+            height: '400px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'flex-start',
             border: '2px solid purple',
           }}
         >
-          <h3>
-            Contract interactions over time
-            <br />
-            Line chart
-            <br />
-            controls to filter by function type
-          </h3>
+          <InteractionsOverTime id={new ArweaveTransactionID(arnsRegistryContractId)} />
         </div>
-        <div
+        {/* <div
           className="flex-row flex-center"
           style={{
             width: '50%',
@@ -85,7 +80,7 @@ function Home() {
             <br />
             Pie chart
           </h3>
-        </div>
+        </div> */}
       </div>
       <ContractViewSelector
         viewCallback={(v: ContractView) => setView(v)}
