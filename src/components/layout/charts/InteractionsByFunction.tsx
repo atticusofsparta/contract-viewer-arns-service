@@ -4,6 +4,7 @@ import {
     CategoryScale,
     ArcElement,
     Title,
+    PieController,
     Tooltip,
     Legend,
   } from 'chart.js';
@@ -17,6 +18,7 @@ import { ContractInteraction } from '../../../types';
 ChartJS.register(
     CategoryScale,
     ArcElement,
+    PieController,
     Title,
     Tooltip,
     Legend
