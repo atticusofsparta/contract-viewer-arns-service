@@ -87,10 +87,10 @@ function Config() {
           <div className="flex-row flex-between" style={{ width: '100%' }}>
             <h2>Network:</h2>
             <div className="flex-column" style={{ gap: '10px' }}>
-              <a href={`http://${gateway}`} rel="noreferer" target="_blank">
+              <a href={`https://${gateway}`} rel="noreferer" target="_blank">
                 Gateway:&nbsp;{gateway} <ArrowRightOutlined size={30} />
               </a>
-              <a href={`http://${serviceUrl}`} rel="noreferer" target="_blank">
+              <a href={`https://${serviceUrl}`} rel="noreferer" target="_blank">
                 ArNS Service:&nbsp;{serviceUrl} <ArrowRightOutlined size={30} />
               </a>
             </div>
