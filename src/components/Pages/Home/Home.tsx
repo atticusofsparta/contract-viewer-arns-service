@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import { PDNS_REGISTRY_ADDRESS } from '../../../constants';
 import '../../../index.css';
 import { ArweaveTransactionID } from '../../../types';
 import ContractState from '../../layout/ContractState/ContractState';
@@ -10,7 +9,8 @@ import ContractViewSelector, {
 import InteractionsTable from '../../layout/tables/InteractionsTable';
 import './styles.css';
 import { useGlobalState } from '../../../state/GlobalState';
-import InteractionsOverTime from '../../layout/charts/InteractionsOverTime';
+import Analytics from '../../layout/Analytics/Analytics';
+import TransactionInfo from '../../layout/TransactionInfo/TransactionInfo';
 
 function Home() {
   const [view, setView] = useState<ContractView>('interactions');
@@ -25,63 +25,8 @@ function Home() {
         gap: '20px',
       }}
     >
-      <h2>Analytics</h2>
-      <br />
-      <div
-        className="flex-row flex-between"
-        style={{
-          width: '100%',
-          gap: '20px',
-        }}
-      >
-        <div
-          className="flex-row flex-center"
-          style={{
-            flex: 1,
-            height: '400px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-start',
-            border: '2px solid purple',
-          }}
-        >
-          <InteractionsOverTime id={new ArweaveTransactionID(arnsRegistryContractId)} />
-        </div>
-        {/* <div
-          className="flex-row flex-center"
-          style={{
-            width: '50%',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-start',
-            border: '2px solid purple',
-          }}
-        >
-          <h3>
-            Contract interactions by app (eg arns portal, sushiswap, etc)
-            <br />
-            Bar chart
-          </h3>
-        </div>
-        <div
-          className="flex-row flex-center"
-          style={{
-            width: '50%',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-start',
-            border: '2px solid purple',
-          }}
-        >
-          <h3>
-            Percentage of interactions by function
-            <br />
-            Pie chart
-          </h3>
-        </div> */}
-      </div>
+      <TransactionInfo id={new ArweaveTransactionID(arnsRegistryContractId)} />
+     
       <ContractViewSelector
         viewCallback={(v: ContractView) => setView(v)}
         view={view}
@@ -98,6 +43,11 @@ function Home() {
         <ContractState
           contractId={new ArweaveTransactionID(arnsRegistryContractId)}
         />
+      ) : (
+        <></>
+      )}
+      {view === 'analytics' ? (
+        <Analytics id={new ArweaveTransactionID(arnsRegistryContractId)} />
       ) : (
         <></>
       )}

@@ -22,6 +22,9 @@ function InteractionsTable({ id }: { id: ArweaveTransactionID }) {
           dataSource={rows}
           columns={columns}
           rowClassName={'contract-table-row'}
+          pagination={{
+            defaultPageSize: 50,
+          }}
         />
       </div>
     </div>
