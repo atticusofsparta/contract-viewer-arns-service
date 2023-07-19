@@ -278,15 +278,13 @@ export type SmartWeaveActionTags = [
 ] &
   TransactionTag[];
 
-
-  export type Config = {
-    gateway: string;
-    serviceUrl: string;
-    blockHeightRefreshRate: number;
-    walletBalanceRefreshRate: number;
-    arnsRegistryContractId: string;
-    arnsRegistrySrcCodeId?: string;
-    savedArnsContractIds?: string[];
-    nameTokenSrcCodeIds?: string[];
-  }
-  
+export type Config = {
+  gateway: string;
+  serviceUrl: string;
+  blockHeightRefreshRate: number;
+  walletBalanceRefreshRate: number;
+  arnsRegistryContractId: string;
+  arnsRegistrySrcCodeId?: string;
+  savedArnsContractIds?: string[];
+  nameTokenSrcCodeIds?: string[];
+};

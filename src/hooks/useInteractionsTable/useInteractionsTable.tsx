@@ -278,7 +278,7 @@ function useInteractionsTable(interactions?: ContractInteraction[]) {
           block: interaction.height,
         };
         // sort by confirmation count (ASC) by default
-        
+
         fetchedRows.push(rowData);
         fetchedRows.sort((a, b) => b.block - a.block);
       } catch (error) {

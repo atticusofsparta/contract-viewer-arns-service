@@ -1,8 +1,8 @@
+import { Spin } from 'antd';
 import ReactJson from 'react-json-view';
 
 import useSmartweaveContract from '../../../hooks/useSmartweaveContract/useSmartweaveContract';
 import { ArweaveTransactionID } from '../../../types';
-import { Spin } from 'antd';
 
 function ContractState({ contractId }: { contractId: ArweaveTransactionID }) {
   const { state: contractState } = useSmartweaveContract(contractId.toString());

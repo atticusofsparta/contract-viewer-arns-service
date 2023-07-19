@@ -33,7 +33,7 @@ const router = createHashRouter(
 );
 
 function App() {
-  useConfig() // get localstorage config on app load
+  useConfig(); // get localstorage config on app load
   return (
     <>
       <RouterProvider router={router} />

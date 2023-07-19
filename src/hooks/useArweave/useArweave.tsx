@@ -4,8 +4,15 @@ import { useEffect, useState } from 'react';
 import { useGlobalState } from '../../state/GlobalState';
 
 function useArweave() {
-  const [{ blockHeight, config:{gateway}, wallet, walletAddress }, dispatchGlobalState] =
-    useGlobalState();
+  const [
+    {
+      blockHeight,
+      config: { gateway },
+      wallet,
+      walletAddress,
+    },
+    dispatchGlobalState,
+  ] = useGlobalState();
 
   const [arweave, setArweave] = useState<Arweave | null>(null);
 

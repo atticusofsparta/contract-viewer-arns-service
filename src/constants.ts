@@ -12,9 +12,9 @@ export const PDNS_REGISTRY_ADDRESS =
   'GfrHPxXyfuxNNdGvzHl_5HFX711jZsG3OE8qmG-UqlY';
 
 export const DEFAULT_ARNS_CONTRACT_IDS = [
-  "bLAgYxAdX2Ry-nt6aH2ixgvJXbpsEYm28NgJgyqfs-U",
-  "GfrHPxXyfuxNNdGvzHl_5HFX711jZsG3OE8qmG-UqlY"
-]
+  'bLAgYxAdX2Ry-nt6aH2ixgvJXbpsEYm28NgJgyqfs-U',
+  'GfrHPxXyfuxNNdGvzHl_5HFX711jZsG3OE8qmG-UqlY',
+];
 
 export const ARNS_SERVICE_URL = 'dev.arns.app';
 export const DEFAULT_GATEWAY = 'arweave.net';
@@ -102,4 +102,4 @@ export const DEFAULT_CONFIG: Config = {
   arnsRegistryContractId: PDNS_REGISTRY_ADDRESS,
   arnsRegistrySrcCodeId: undefined,
   nameTokenSrcCodeIds: undefined,
-}
+};

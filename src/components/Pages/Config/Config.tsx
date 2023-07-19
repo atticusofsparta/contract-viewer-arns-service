@@ -11,8 +11,8 @@ import {
   TX_ID_REGEX,
 } from '../../../constants';
 import useConfig from '../../../hooks/useConfig/useConfig';
-import CopyTextButton from '../../buttons/CopyTextButton/CopyTextButton';
 import eventEmitter from '../../../utils/events';
+import CopyTextButton from '../../buttons/CopyTextButton/CopyTextButton';
 
 function Config() {
   const [
@@ -211,7 +211,7 @@ function Config() {
                 width: 'fit-content',
                 justifyContent: 'space-between',
                 display: 'flex',
-                gap:"10px"
+                gap: '10px',
               }}
             >
               New ArNS registry ID:
@@ -235,7 +235,12 @@ function Config() {
                 style={{ background: 'green' }}
                 onClick={() => {
                   if (!TX_ID_REGEX.test(newArnsRegistryContractId)) {
-                   return eventEmitter.emit('error', new Error("Invalid contract id, must be 43 characters long and only contain letters, numbers, and '_'"));
+                    return eventEmitter.emit(
+                      'error',
+                      new Error(
+                        "Invalid contract id, must be 43 characters long and only contain letters, numbers, and '_'",
+                      ),
+                    );
                   }
                   setConfig({
                     arnsRegistryContractId: newArnsRegistryContractId,
@@ -254,7 +259,7 @@ function Config() {
                 width: 'fit-content',
                 justifyContent: 'space-between',
                 display: 'flex',
-                gap:"10px"
+                gap: '10px',
               }}
             >
               New ArNS Source Code ID:
@@ -306,46 +311,48 @@ function Config() {
               Reset to defaults
             </Button>
             <div className="flex-column flex-start" style={{ gap: 10 }}>
-            <label>Default ArNS contract ids</label>
-            <div className='flex-row' style={{gap:"20px"}}> 
-            <select style={{height:"30px"}}
-            value={arnsRegistryContractId}
-              onChange={(v) =>
-                setConfig({ arnsRegistryContractId: v.target.value })
-              }
-            >
-              {[
-                ...DEFAULT_ARNS_CONTRACT_IDS,
-                ...(savedArnsContractIds
-                  ? savedArnsContractIds.filter(
-                      (id) => !DEFAULT_ARNS_CONTRACT_IDS.includes(id),
-                    )
-                  : []),
-              ].map((id) => (
-                <option value={id}>
-                  {id}&nbsp;
-                </option>
-              ))}
-            </select>
-         {!DEFAULT_ARNS_CONTRACT_IDS.includes(arnsRegistryContractId) ?  <Button
-                    style={{ background: "crimson", color: "white" }}
+              <label>Default ArNS contract ids</label>
+              <div className="flex-row" style={{ gap: '20px' }}>
+                <select
+                  style={{ height: '30px' }}
+                  value={arnsRegistryContractId}
+                  onChange={(v) =>
+                    setConfig({ arnsRegistryContractId: v.target.value })
+                  }
+                >
+                  {[
+                    ...DEFAULT_ARNS_CONTRACT_IDS,
+                    ...(savedArnsContractIds
+                      ? savedArnsContractIds.filter(
+                          (id) => !DEFAULT_ARNS_CONTRACT_IDS.includes(id),
+                        )
+                      : []),
+                  ].map((id) => (
+                    <option value={id}>{id}&nbsp;</option>
+                  ))}
+                </select>
+                {!DEFAULT_ARNS_CONTRACT_IDS.includes(arnsRegistryContractId) ? (
+                  <Button
+                    style={{ background: 'crimson', color: 'white' }}
                     onClick={() =>
                       setConfig({
                         arnsRegistryContractId: DEFAULT_ARNS_CONTRACT_IDS[0],
-                        savedArnsContractIds:savedArnsContractIds ? savedArnsContractIds?.filter(
-                          (contractID) => arnsRegistryContractId !== contractID,
-                        ) : [],
+                        savedArnsContractIds: savedArnsContractIds
+                          ? savedArnsContractIds?.filter(
+                              (contractID) =>
+                                arnsRegistryContractId !== contractID,
+                            )
+                          : [],
                       })
                     }
                   >
-                   <b> Remove custom id from defaults</b>
-                  </Button> : <></>}
-                  </div>
+                    <b> Remove custom id from defaults</b>
+                  </Button>
+                ) : (
+                  <></>
+                )}
               </div>
-          
-
-
-           
+            </div>
           </div>
         </div>
       ) : (

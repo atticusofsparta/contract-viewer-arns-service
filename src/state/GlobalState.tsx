@@ -1,8 +1,8 @@
 import React, { Dispatch, createContext, useContext, useReducer } from 'react';
 
+import { DEFAULT_CONFIG } from '../constants';
 import { ArweaveWalletConnector, Config } from '../types';
 import type { Action } from './GlobalReducer';
-import { DEFAULT_CONFIG } from '../constants';
 
 export type GlobalState = {
   blockHeight: number;
@@ -16,8 +16,8 @@ const initialState: GlobalState = {
   blockHeight: 0,
   walletAddress: undefined,
   walletBalance: 0,
-  config: DEFAULT_CONFIG
-}
+  config: DEFAULT_CONFIG,
+};
 
 const GlobalStateContext = createContext<[GlobalState, Dispatch<Action>]>([
   initialState,

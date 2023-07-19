@@ -10,23 +10,26 @@ import { SimpleArweaveDataProvider } from '../../utils/SimpleArweaveDataProvider
 import { WarpDataProvider } from '../../utils/WarpDataProvider';
 import eventEmitter from '../../utils/events';
 
-
-
 export function useArweaveCompositeProvider(): ArweaveCompositeDataProvider {
+  const [
+    {
+      config: { gateway, serviceUrl },
+      blockHeight,
+      walletAddress,
+    },
+    dispatchGlobalState,
+  ] = useGlobalState();
 
-  const [{ config:{gateway, serviceUrl}, blockHeight, walletAddress }, dispatchGlobalState] =
-    useGlobalState();
-
-    const DEFAULT_ARWEAVE = new Arweave({
-      host: gateway,
-      protocol: 'https',
-    });
-    const defaultWarp = new WarpDataProvider(DEFAULT_ARWEAVE);
-    const defaultArweave = new SimpleArweaveDataProvider(DEFAULT_ARWEAVE);
-    const defaultContractCache = [
-      new PDNSContractCache(`https://${serviceUrl}`),
-      defaultWarp,
-    ];
+  const DEFAULT_ARWEAVE = new Arweave({
+    host: gateway,
+    protocol: 'https',
+  });
+  const defaultWarp = new WarpDataProvider(DEFAULT_ARWEAVE);
+  const defaultArweave = new SimpleArweaveDataProvider(DEFAULT_ARWEAVE);
+  const defaultContractCache = [
+    new PDNSContractCache(`https://${serviceUrl}`),
+    defaultWarp,
+  ];
   const [arweaveDataProvider, setArweaveDataProvider] =
     useState<ArweaveCompositeDataProvider>(
       new ArweaveCompositeDataProvider(
