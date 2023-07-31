@@ -8,16 +8,17 @@ import {
   SmartweaveContractCache,
   TransactionCache,
 } from '../types';
-import { LocalStorageCache } from './LocalStorageCache';
+import { IDBCache } from './IDBCache';
 
 export class PDNSContractCache implements SmartweaveContractCache {
   private _url: string;
   private _cache: TransactionCache;
 
-  constructor(url: string, cache: TransactionCache = new LocalStorageCache()) {
+  constructor(url: string, cache: TransactionCache = new IDBCache()) {
     this._url = url;
     this._cache = cache;
   }
+
 
   async getContractState<T extends PDNTContractJSON | PDNSContractJSON>(
     contractTxId: ArweaveTransactionID,
