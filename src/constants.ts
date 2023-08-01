@@ -9,11 +9,12 @@ export const TX_ID_REGEX = new RegExp('^[a-zA-Z0-9-_s+]{43}$');
 export const RECOMMENDED_TRANSACTION_CONFIRMATIONS = 50;
 export const RESERVED_NAME_LENGTH = 4; // names must be greater than 4 characters, in contract this is MINIMUM_ALLOWED_NAME_LENGTH = 5
 export const PDNS_REGISTRY_ADDRESS =
-  'GfrHPxXyfuxNNdGvzHl_5HFX711jZsG3OE8qmG-UqlY';
+  'ARjD2EwmED2L6e05Bb1HCjcddIPeUQwb9Oe1638niuA';
 
 export const DEFAULT_ARNS_CONTRACT_IDS = [
   'bLAgYxAdX2Ry-nt6aH2ixgvJXbpsEYm28NgJgyqfs-U',
   'GfrHPxXyfuxNNdGvzHl_5HFX711jZsG3OE8qmG-UqlY',
+  'ARjD2EwmED2L6e05Bb1HCjcddIPeUQwb9Oe1638niuA'
 ];
 
 export const ARNS_SERVICE_URL = 'dev.arns.app';
