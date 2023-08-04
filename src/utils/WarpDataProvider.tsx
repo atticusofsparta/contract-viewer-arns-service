@@ -4,6 +4,7 @@ import axios from 'axios';
 import {
   ArWallet,
   LoggerFactory,
+  SourceType,
   Warp,
   WarpFactory,
   defaultCacheOptions,
@@ -96,16 +97,15 @@ export class WarpDataProvider
 
     const contract = this._warp // eval options were required due to change in manifest. This is causing an issue where it is causing a delay for returning the txid due to the `waitForConfirmation` option. This should be removed from the eval manifest if we dont want to make the user wait.
       .contract(contractTxId.toString())
-      .setEvaluationOptions(
-        contractTxId.toString() === PDNS_REGISTRY_ADDRESS
-          ? {
-              waitForConfirmation: true,
-              internalWrites: true,
-              updateCacheForEachInteraction: true,
-              unsafeClient: 'skip',
-              maxCallDepth: 3,
-            }
-          : {},
+      .setEvaluationOptions({
+            sourceType:"arweave" as SourceType,
+            unsafeClient:"skip",
+            internalWrites:true,
+            useKVStorage:true,
+            updateCacheForEachInteraction:true,
+            maxInteractionEvaluationTimeSeconds:60,
+            throwOnInternalWriteError:true,
+            },
       )
       .connect('use_wallet');
     if (dryWrite) {
@@ -272,11 +272,13 @@ export class WarpDataProvider
     const contract = this._warp // eval options were required due to change in manifest. This is causing an issue where it is causing a delay for returning the txid due to the `waitForConfirmation` option. This should be removed from the eval manifest if we dont want to make the user wait.
       .contract(PDNS_REGISTRY_ADDRESS)
       .setEvaluationOptions({
-        waitForConfirmation: true,
-        internalWrites: true,
-        updateCacheForEachInteraction: true,
-        unsafeClient: 'skip',
-        maxCallDepth: 3,
+        sourceType:"arweave" as SourceType,
+        unsafeClient:"skip",
+        internalWrites:true,
+        useKVStorage:true,
+        updateCacheForEachInteraction:true,
+        maxInteractionEvaluationTimeSeconds:60,
+        throwOnInternalWriteError:true,
       })
       .connect('use_wallet');
     // because we are manually constructing the tags, we want to verify them immediately and always
